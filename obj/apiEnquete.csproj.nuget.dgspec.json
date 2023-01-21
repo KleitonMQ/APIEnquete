@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\ProjetosDev\\Mentoria\\apiEnquete\\apiEnquete.csproj": {}
+    "C:\\Users\\cce-teste37\\Documents\\Bootcamp\\APIEnquete\\apiEnquete.csproj": {}
   },
   "projects": {
-    "E:\\ProjetosDev\\Mentoria\\apiEnquete\\apiEnquete.csproj": {
+    "C:\\Users\\cce-teste37\\Documents\\Bootcamp\\APIEnquete\\apiEnquete.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\ProjetosDev\\Mentoria\\apiEnquete\\apiEnquete.csproj",
+        "projectUniqueName": "C:\\Users\\cce-teste37\\Documents\\Bootcamp\\APIEnquete\\apiEnquete.csproj",
         "projectName": "apiEnquete",
-        "projectPath": "E:\\ProjetosDev\\Mentoria\\apiEnquete\\apiEnquete.csproj",
-        "packagesPath": "C:\\Users\\Moosh\\.nuget\\packages\\",
-        "outputPath": "E:\\ProjetosDev\\Mentoria\\apiEnquete\\obj\\",
+        "projectPath": "C:\\Users\\cce-teste37\\Documents\\Bootcamp\\APIEnquete\\apiEnquete.csproj",
+        "packagesPath": "C:\\Users\\cce-teste37\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\cce-teste37\\Documents\\Bootcamp\\APIEnquete\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Moosh\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\cce-teste37\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -66,7 +66,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }
