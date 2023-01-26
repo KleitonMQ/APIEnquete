@@ -14,11 +14,17 @@ namespace APIEnquete.src.Controller
         int valorAtual = 0;
 
         [HttpGet]
-        public IEnumerable<PossibilidadeVoto> OpcoesDeVoto(string nomeEnquete)
+        public ActionResult<IEnumerable<object>> OpcoesDeVoto(string nomeEnquete)
         {
-            // Urna urna = new Urna();
-            return Urna.DesserializarXml<Urna>(nomeEnquete).OpcoesEnquete;
+            var urna = Urna.DesserializarXml<Urna>(nomeEnquete);
+            if (urna == null)
+            {
+                return BadRequest("Enquete não encontrada.");
+            }
+
+            return Ok(Urna.DesserializarXml<Urna>(nomeEnquete).OpcoesEnquete);
         }
-        
+
+
     }
 }

@@ -11,10 +11,21 @@ namespace apiEnquete.src.Controller
     public class BuscarEnquetes : ControllerBase
     {
         [HttpGet]
-        public string[] ListarEnquetes()
+        public ActionResult<string[]> ListarEnquetes()
         {
-            string[] arquivos = Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "Enquetes"));
-            return arquivos;
+            
+            if (Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), "Enquetes")))
+            {
+                string[] arquivos = Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "Enquetes"));
+                if (arquivos.Length == 0)
+                    return BadRequest("nenhuma enquete encontrada.");
+
+                return Ok(arquivos);
+            }
+
+            return BadRequest("nenhuma enquete encontrada.");
+
+            
         }
     }
 }

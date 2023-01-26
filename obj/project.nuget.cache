@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PsHF3YuIPSNmBtiMw6LalktjArisrvBzdyAZc1e+FdLYSGtvmWLz/yFgiyRQx9oqVLQXd8CL08wtDMaJLoCiMA==",
+  "dgSpecHash": "stF7egT3SYPVEorkyz+OMJKeVwf8LG1rDkoh4D5YaO9KQEWjbH1cQjh7CQ8iAZQ10w2LiTA7WbNk+ZAtxhBX/Q==",
   "success": true,
-  "projectFilePath": "E:\\ProjetosDev\\Mentoria\\apiEnquete\\apiEnquete.csproj",
+  "projectFilePath": "E:\\ProjetosDev\\Mentoria\\APIEnquete\\apiEnquete.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Moosh\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.0\\microsoft.aspnetcore.openapi.7.0.0.nupkg.sha512",
     "C:\\Users\\Moosh\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",

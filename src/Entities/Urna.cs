@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -11,7 +6,7 @@ namespace APIEnquete.src.Entities
 {
     public class Urna
     {
-        public Urna()
+        private Urna()
         {
 
         }
@@ -41,7 +36,16 @@ namespace APIEnquete.src.Entities
 
         public void SerializarXml(Urna urna)
         {
-            string caminhoArquivo = Path.Combine(Directory.GetCurrentDirectory(), "Enquetes", NomeEnquete);
+            string caminhoArquivo;
+            if (Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), "Enquetes")))
+                caminhoArquivo = Path.Combine(Directory.GetCurrentDirectory(), "Enquetes", NomeEnquete);
+            
+            else
+            {
+                Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "Enquetes"));
+                caminhoArquivo = Path.Combine(Directory.GetCurrentDirectory(), "Enquetes", NomeEnquete);
+            }
+
             XmlSerializer serializer = new XmlSerializer(typeof(Urna));
             using (XmlWriter writer = XmlWriter.Create(caminhoArquivo))
             {
@@ -56,7 +60,7 @@ namespace APIEnquete.src.Entities
             string caminhoArquivo = Path.Combine(Directory.GetCurrentDirectory(), "Enquetes", NomeEnquete);
 
             if (!File.Exists(caminhoArquivo))
-                retorno = (T)(object)"Enquete não encontrada";
+                return (T)(object)null;
 
             XmlSerializer desserializar = new XmlSerializer(typeof(T));
             using (XmlReader leitor = XmlReader.Create(caminhoArquivo))
@@ -68,12 +72,9 @@ namespace APIEnquete.src.Entities
 
         public void AdicionarVoto(int id)
         {
-            foreach (var item in this.OpcoesEnquete)
+            if (this.OpcoesEnquete.Any(x => x.ID == id))
             {
-                if (item.ID == id)
-                {
-                    item.IncrementarVoto();
-                }
+                this.OpcoesEnquete.FirstOrDefault(x => x.ID == id).IncrementarVoto();
             }
         }
     }

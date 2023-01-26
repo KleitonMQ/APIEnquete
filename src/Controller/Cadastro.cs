@@ -16,10 +16,20 @@ namespace apiEnquete.src.Controller
     public class Cadastro : ControllerBase
     {
         [HttpPost]
-        public void CadastrarEnquete(string nomeEnquete, string[] opcoes)
+        public IActionResult CadastrarEnquete(string nomeEnquete, string[] opcoes)
         {
+            if (nomeEnquete == null)
+            {
+                return BadRequest("Informar o título da enquete.");
+            }
+            if (opcoes == null || opcoes.Length == 1)
+            {
+                return BadRequest("Informar pelo menos duas opções para voto.");
+            }
+
             Urna urna = new Urna(nomeEnquete, opcoes);
             urna.SerializarXml(urna);
+            return Ok(urna);
         }
     }
 }
