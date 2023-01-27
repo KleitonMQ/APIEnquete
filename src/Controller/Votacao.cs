@@ -12,13 +12,21 @@ namespace apiEnquete.src.Controller
     public class Votacao : ControllerBase
     {
         [HttpPut]
-        public IEnumerable<PossibilidadeVoto> Votar(string nomeEnquete, int id)
+        public ActionResult<IEnumerable<PossibilidadeVoto>> Votar(string nomeEnquete, int id)
         {
 
             Urna lendoUrna = Urna.DesserializarXml<Urna>(nomeEnquete);
-            lendoUrna.AdicionarVoto(id);
-            lendoUrna.SerializarXml(lendoUrna);
-            return lendoUrna.OpcoesEnquete;
+            if (lendoUrna == null)
+                return BadRequest("Enquete não encontrada.");
+
+            if (lendoUrna.OpcoesEnquete.Any(x => x.ID == id))
+            {
+                lendoUrna.AdicionarVoto(id);
+                lendoUrna.SerializarXml(lendoUrna);
+                return Ok(lendoUrna.OpcoesEnquete);
+            }
+            else
+                return BadRequest("Opção de voto inválido.");
         }
     }
 }

@@ -16,7 +16,7 @@ namespace apiEnquete.src.Controller
             
             if (Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), "Enquetes")))
             {
-                string[] arquivos = Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "Enquetes"));
+                string[] arquivos = Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "Enquetes")).Select(Path.GetFileName).ToArray();
                 if (arquivos.Length == 0)
                     return BadRequest("nenhuma enquete encontrada.");
 

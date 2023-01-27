@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Components.Web;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -22,7 +23,7 @@ namespace APIEnquete.src.Entities
         }
         public string NomeEnquete { get; set; }
         public List<PossibilidadeVoto> OpcoesEnquete { get; set; }
-
+        public int TotalDeVotos { get; set; }
         public List<string> opcoesValidas()
         {
 
@@ -34,22 +35,22 @@ namespace APIEnquete.src.Entities
             return validos;
         }
 
-        public void SerializarXml(Urna urna)
+        public bool SerializarXml(Urna urna)
         {
-            string caminhoArquivo;
-            if (Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), "Enquetes")))
-                caminhoArquivo = Path.Combine(Directory.GetCurrentDirectory(), "Enquetes", NomeEnquete);
-            
+            string caminhoArquivo = GarantirEndereco();
+
+            if (urna.NomeEnquete == null || urna.NomeEnquete == "" || urna.OpcoesEnquete.Any(x=> x.Opcao ==""))
+            {
+                return false;
+            }
             else
             {
-                Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "Enquetes"));
-                caminhoArquivo = Path.Combine(Directory.GetCurrentDirectory(), "Enquetes", NomeEnquete);
-            }
-
-            XmlSerializer serializer = new XmlSerializer(typeof(Urna));
-            using (XmlWriter writer = XmlWriter.Create(caminhoArquivo))
-            {
-                serializer.Serialize(writer, urna);
+                XmlSerializer serializer = new XmlSerializer(typeof(Urna));
+                using (XmlWriter writer = XmlWriter.Create(caminhoArquivo))
+                {
+                    serializer.Serialize(writer, urna);
+                }
+                return true;
             }
         }
 
@@ -75,7 +76,22 @@ namespace APIEnquete.src.Entities
             if (this.OpcoesEnquete.Any(x => x.ID == id))
             {
                 this.OpcoesEnquete.FirstOrDefault(x => x.ID == id).IncrementarVoto();
+                this.TotalDeVotos++;
             }
         }
+
+        private string GarantirEndereco()
+        {
+            string caminhoArquivo;
+            if (Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), "Enquetes")))
+                return caminhoArquivo = Path.Combine(Directory.GetCurrentDirectory(), "Enquetes", NomeEnquete);
+
+            else
+            {
+                Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "Enquetes"));
+                return caminhoArquivo = Path.Combine(Directory.GetCurrentDirectory(), "Enquetes", NomeEnquete);
+            }
+        }
+
     }
 }
