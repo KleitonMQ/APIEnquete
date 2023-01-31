@@ -21,6 +21,7 @@ namespace APIEnquete.src.Entities
                 this.OpcoesEnquete.Add(opcao);
             }
         }
+
         public string NomeEnquete { get; set; }
         public List<PossibilidadeVoto> OpcoesEnquete { get; set; }
         public int TotalDeVotos { get; set; }
@@ -39,7 +40,7 @@ namespace APIEnquete.src.Entities
         {
             string caminhoArquivo = GarantirEndereco();
 
-            if (urna.NomeEnquete == null || urna.NomeEnquete == "" || urna.OpcoesEnquete.Any(x=> x.Opcao ==""))
+            if (urna.NomeEnquete == null || urna.NomeEnquete == "" || urna.OpcoesEnquete.Any(x => x.Opcao == ""))
             {
                 return false;
             }
@@ -57,7 +58,7 @@ namespace APIEnquete.src.Entities
         public static T DesserializarXml<T>(string NomeEnquete)
         {
             T retorno;
-
+            
             string caminhoArquivo = Path.Combine(Directory.GetCurrentDirectory(), "Enquetes", NomeEnquete);
 
             if (!File.Exists(caminhoArquivo))
